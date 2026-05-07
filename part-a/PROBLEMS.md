@@ -3,10 +3,10 @@
 ## Summary
 
 - Total problems documented: 6 (3 given + 3 self-discovered)
-- Platform explored: irctc.co.in (live platform exploration)
+- Platform explored: irctc.co.in and IRCTC Rail Connect mobile app
 - Devices used:
   - Desktop Chrome (Windows)
-  - Mobile Chrome (Android)
+  - IRCTC Rail Connect App (Android)
 - Date tested: May 2026
 
 ---
@@ -320,64 +320,64 @@ The information architecture is too technical and does not support first-time or
 
 ---
 
-# Problem 6: Mobile Website Freezes During Passenger Form Entry [Self-Discovered]
+# Problem 6: Mobile App Freezes During Passenger Form Entry [Self-Discovered]
 
 ## How I found it
 
-I tested the booking flow using Chrome on Android mobile and observed multiple UI freezes while entering passenger details.
+I tested the booking flow using the IRCTC Rail Connect Android app and observed multiple UI freezes while entering passenger details.
 
 ---
 
 ## Screenshot / Description
 
-Screen: Passenger Details Form on Mobile Browser
+Screen: Passenger Details Form in IRCTC Rail Connect App
 
 Observed behavior:
-The page lagged while scrolling, and form fields reset unexpectedly when the keyboard opened or closed.
+The app lagged while scrolling, and form fields reset unexpectedly when the keyboard opened or closed.
 
 Suggested screenshot:
-`assets/screenshots/mobile-form-lag.png`
+`assets/screenshots/mobile-app-form-lag.png`
 
 ---
 
 ## What is broken
 
-The mobile booking form is poorly optimized for smaller screens and lower-performance devices. Keyboard interactions trigger layout shifts and field resets, making passenger form completion frustrating.
+The IRCTC mobile app booking form is poorly optimized for smaller screens and lower-performance devices. Keyboard interactions trigger layout shifts and field resets, making passenger form completion frustrating.
 
 ---
 
 ## Affected users
 
-- Android users
+- Android app users
 - Users with low-end or mid-range phones
 - Users on slower mobile networks
 - Elderly users entering passenger details slowly
 
 Estimated affected users:
-A significant percentage of IRCTC traffic comes from mobile browsers.
+A significant percentage of IRCTC bookings are performed through the mobile app.
 
 ---
 
 ## Frequency
 
-Observed frequently during testing on Android Chrome.
+Observed frequently during testing on the Android app.
 
-The issue is more severe on slower devices and unstable internet connections.
+The issue becomes more severe on slower devices and unstable internet connections.
 
 ---
 
 ## Current flow — step by step
 
-1. User opens IRCTC mobile website
-2. User searches and selects train
+1. User opens the IRCTC Rail Connect app
+2. User searches and selects a train
 3. User proceeds to passenger details page
 4. Passenger form loads slowly
-5. User taps name field and keyboard opens
-6. Page auto-scrolls unexpectedly
-7. User enters passenger details
-8. Keyboard closes and page re-renders
+5. User taps the passenger name field and keyboard opens
+6. Screen auto-scrolls unexpectedly
+7. User enters passenger information
+8. Keyboard closes and app screen refreshes
 9. Some fields reset or lose focus
-10. User re-enters information
+10. User re-enters passenger information
 11. Form submission becomes slow and frustrating
 12. User risks session timeout due to delays
 
@@ -387,9 +387,7 @@ The issue is more severe on slower devices and unstable internet connections.
 
 The failure occurs in Steps 5–10.
 
-The responsive layout and frontend state management are poorly optimized for mobile browsers, causing re-renders and field resets during keyboard interactions.
-
----
+The mobile app frontend is poorly optimized for keyboard interactions and state persistence, causing re-renders and field resets during form entry.
 
 # Final Observations
 
